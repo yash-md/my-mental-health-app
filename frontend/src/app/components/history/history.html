@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="history-container">
+  <h1>Past Journal Entries</h1>
+  <div *ngIf="displayedEntries.length === 0" class="no-entries">
+    <p>You haven't written any journal entries yet.</p>
+  </div>
+  <table *ngIf="displayedEntries.length > 0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date</th>
+        <th>Action</th>
+        <th>Tips</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of displayedEntries">
+        <td>{{ entry.title }}</td>
+        <td>{{ stripHtmlTags(entry.content).slice(0, 100) }}...</td>
+        <td>{{ entry.date | date: 'medium' }}</td>
+        <td><button (click)="viewEntry(entry)">View</button></td>
+        <td><button (click)="viewTipsForEntry(entry)">View Tips</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage * entriesPerPage >= allEntries.length">Next</button>
+    <div class="actions">
+      <button class="btn" (click)="goToJournal()">Back to Writing Journal Entry</button>
+      <button class="btn" (click)="goToMoodAnalysis()">View your Mood Analysis</button>
+    </div>
+  </div>
+</div>

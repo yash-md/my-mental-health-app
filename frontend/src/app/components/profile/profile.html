@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="profile-page-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-avatar">{{ user?.username?.charAt(0)?.toUpperCase() }}</div>
+      <h2 class="profile-name">{{ user?.username }}</h2>
+    </div>
+    <div class="profile-details">
+      <div class="detail-item">
+        <span class="detail-label">Email:</span>
+        <span class="detail-value">{{ user?.email }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Phone:</span>
+        <span class="detail-value">{{ user?.phone }}</span>
+      </div>
+    </div>
+    <button class="edit-profile-btn" routerLink="/edit-profile">Edit Profile</button>
+  </div>
+</div>

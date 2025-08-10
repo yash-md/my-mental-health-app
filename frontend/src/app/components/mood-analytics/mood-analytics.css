@@ -1,0 +1,134 @@
+.mood-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 70px);
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f0f7f6 0%, #e9f6f4 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+}
+
+.mood-card {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 35px rgba(46, 139, 119, 0.1);
+  animation: fadeIn 0.5s ease-out;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.mood-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  animation: bounceIn 0.8s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.mood-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2e8b77;
+  margin-bottom: 1rem;
+}
+
+.mood-analysis {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin-bottom: 2.5rem;
+}
+
+.tips-notification {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #e9f6f4;
+  border: 1px solid #d1e0dc;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(46, 139, 119, 0.08);
+}
+
+.tips-notification p {
+  margin: 0;
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.tips-btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2e8b77, #3aa891);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(46, 139, 119, 0.2);
+}
+
+.tips-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(46, 139, 119, 0.3);
+}
+
+@media (max-width: 768px) {
+  .mood-card {
+    padding: 1.5rem;
+  }
+
+  .mood-icon {
+    font-size: 4rem;
+  }
+
+  .mood-title {
+    font-size: 2rem;
+  }
+
+  .mood-analysis {
+    font-size: 1rem;
+  }
+
+  .tips-notification {
+    padding: 1rem;
+  }
+
+  .tips-notification p {
+    font-size: 0.9rem;
+  }
+
+  .tips-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

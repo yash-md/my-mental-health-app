@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="tips-container">
+  <div class="tips-card">
+    <h1 class="tips-title">Your Personalized AI-Generated Tips</h1>
+    <div *ngIf="loading" class="loading-spinner"></div>
+    <ul *ngIf="!loading" class="tips-list">
+      <li *ngFor="let tip of tips" class="tip-item">{{ tip }}</li>
+    </ul>
+    <p *ngIf="!loading && tips.length === 0" class="no-tips">No tips available at the moment. Write a journal entry to get started!</p>
+    <div class="tips-actions">
+      <button class="btn" (click)="goToHome()">Go to HomePage</button>
+      <button class="btn" (click)="goToHistory()">View Past Entries</button>
+    </div>
+  </div>
+</div>

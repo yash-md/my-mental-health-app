@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div class="mood-container">
+  <div class="mood-card">
+    <div class="mood-icon">{{ getMoodEmoji(mood) }}</div>
+    <h1 class="mood-title">{{ mood }}</h1>
+    <p class="mood-analysis">{{ analysis }}</p>
+    <div *ngIf="showTipsButton" class="tips-notification">
+      <p>Your personalized tips are ready!</p>
+      <button (click)="goToTipsPage()" class="tips-btn">View Tips</button>
+    </div>
+  </div>
+</div>

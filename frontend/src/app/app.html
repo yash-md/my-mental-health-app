@@ -1,0 +1,5 @@
+<app-logo-intro *ngIf="showIntro"></app-logo-intro>
+
+<ng-container *ngIf="!showIntro">
+  <router-outlet></router-outlet>
+</ng-container>

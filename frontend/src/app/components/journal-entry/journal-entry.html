@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="journal-wrapper">
+  <div class="journal-container">
+
+    <div class="welcome-header">
+      <div class="header-icon">📝</div>
+      <h1>Welcome to Your Mood Journal</h1>
+      <p>Take a moment to reflect on your day. Write down your thoughts, emotions, and experiences. This space is just
+        for you — a safe place to understand your feelings and track your mental well-being over time.</p>
+    </div>
+
+    <div class="prompt-container">
+      <div class="prompt-icon">💡</div>
+      <h3>Prompt of the Day</h3>
+      <p class="prompt-text">{{ prompt }}</p>
+    </div>
+
+    <div class="entry-form-container">
+      <h2>New Journal Entry</h2>
+      <form [formGroup]="journalForm" (ngSubmit)="submitEntry()">
+
+        <div class="form-group">
+          <label for="title">Entry Title</label>
+          <input type="text" id="title" placeholder="Give your entry a meaningful title..." formControlName="title"
+            class="title-input" />
+          <div *ngIf="journalForm.get('title')?.touched && journalForm.get('title')?.invalid" class="error">
+            *Title is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="content">Your Thoughts</label>
+          <div class="editor-wrapper">
+            <div class="ngx-editor-container">
+              <ngx-editor-menu [editor]="editor" class="editor-menu"></ngx-editor-menu>
+              <ngx-editor [editor]="editor" formControlName="content"
+                placeholder="Start writing your thoughts and feelings..." class="editor-content">
+              </ngx-editor>
+            </div>
+          </div>
+          <div *ngIf="journalForm.get('content')?.touched && journalForm.get('content')?.invalid" class="error">
+            *Please write something about your day
+          </div>
+        </div>
+
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+        <button type="submit" class="submit-btn" [disabled]="journalForm.invalid">
+          <span class="btn-icon">💾</span>
+          Save Entry
+        </button>
+      </form>
+    </div>
+
+    
+
+    <button class="history-btn" (click)="goToHistory()">View Past Entries</button>
+    <button class="mood-btn" (click)="goToMoodAnalysis()">View your Mood Analysis</button>
+  </div>
+</div>

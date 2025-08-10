@@ -1,0 +1,49 @@
+<header class="header" *ngIf="isLoggedIn$ | async">
+  <nav class="navbar">
+    <div class="brand-container">
+      <img src="logo_remove.png" alt="Senti Logo" class="logo" style="width: 60px; height: 60px;"/>
+    </div>
+
+    <div class="pill-radio-container">
+      <input type="radio" name="nav" id="pill-home" checked />
+      <label for="pill-home">
+        <a routerLink="/home" (click)="scrollToSection('home')">Home</a>
+      </label>
+
+      <input type="radio" name="nav" id="pill-services" />
+      <label for="pill-services" class="dropdown">
+        <a (click)="scrollToSection('services')" >Services</a>
+        <ul class="dropdown-content" [class.show]="showServicesDropdown">
+          <li><a routerLink="/journal">Journal Entry</a></li>
+          <li><a routerLink="/mood-analytics">Mood Analysis</a></li>
+          <li><a routerLink="/history">History</a></li>
+          <li><a routerLink="/tips">Tips</a></li>
+        </ul>
+      </label>
+
+      <input type="radio" name="nav" id="pill-about" />
+      <label for="pill-about">
+        <a (click)="scrollToSection('about')">About Us</a>
+      </label>
+
+      <input type="radio" name="nav" id="pill-contact" />
+      <label for="pill-contact">
+        <a (click)="scrollToSection('contact')">Contact Us</a>
+      </label>
+
+      <input type="radio" name="nav" id="pill-profile" />
+      <label for="pill-profile" class="dropdown">
+        <a href="#" class="dropbtn">
+          <img src="profile.jpg" alt="Profile" class="profile-pic"> ▾
+        </a>
+        <ul class="dropdown-content" [class.show]="showProfileDropdown">
+          <li><a routerLink="/profile">View Profile</a></li>
+          <li><a routerLink="/edit-profile">Edit Profile</a></li>
+          <li><a routerLink="/change-password">Change Password</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </label>
+      <div class="pill-indicator"></div>
+    </div>
+  </nav>
+</header>

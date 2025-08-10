@@ -1,0 +1,381 @@
+/* Remove all margins and ensure full width */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; 
+  background: none;
+}
+
+.auth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom right, #0F403B, #95BFB8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem; /* ✅ Added padding to prevent edge touching */
+  overflow-y: auto; /* ✅ Allow scrolling if needed */
+}
+
+/* ✅ OPTIMIZED: Smaller auth box for better fit */
+.auth-box {
+  background-color: #ffffff;
+  padding: 1.8rem; /* ✅ Reduced from 2.5rem */
+  width: 100%;
+  max-width: 380px; /* ✅ Reduced from 420px */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* ✅ Reduced shadow */
+  border-radius: 10px; /* ✅ Reduced from 12px */
+  transition: all 0.3s ease-in-out;
+  max-height: 95vh; /* ✅ Prevent overflow */
+  overflow-y: auto; /* ✅ Allow internal scrolling if needed */
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 1.2rem; /* ✅ Reduced from 1.5rem */
+  color: #2e8b77;
+  font-size: 1.6rem; /* ✅ Reduced from 1.75rem */
+  font-weight: 600;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* ✅ Reduced from 1.2rem */
+}
+
+.auth-box input {
+  padding: 0.65rem 0.9rem; /* ✅ Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* ✅ Reduced from 8px */
+  font-size: 0.95rem; /* ✅ Reduced from 1rem */
+  transition: border-color 0.3s;
+}
+
+button[type="submit"] {
+  background-color: #2e8b77;
+  color: white;
+  padding: 0.65rem; /* ✅ Reduced from 0.75rem */
+  font-size: 0.95rem; /* ✅ Reduced from 1rem */
+  border: none;
+  border-radius: 6px; /* ✅ Reduced from 8px */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 0.5rem; /* ✅ Added top margin */
+}
+
+button[type="submit"]:hover {
+  background-color: #256e5f;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 10px; /* ✅ Reduced from 12px */
+  margin: 1px 0 3px 0; /* ✅ Reduced margins */
+  line-height: 1.2; /* ✅ Tighter line height */
+  display: block;
+  padding: 0; /* ✅ Remove any padding */
+}
+
+/* ✅ NEW: Compact error for multiple error messages */
+.error span {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.auth-box p {
+  text-align: center;
+  font-size: 0.9rem; /* ✅ Reduced from 0.95rem */
+  margin-top: 0.8rem; /* ✅ Reduced from 1rem */
+  color: #444;
+}
+
+.auth-box a {
+  color: #2e8b77;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-box a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ OPTIMIZED: Compact password instructions */
+.instruction {
+  font-size: 10px; /* ✅ Reduced from 12px */
+  color: #555;
+  margin-bottom: 2px; /* ✅ Reduced from 5px */
+  display: block;
+  line-height: 1.2; /* ✅ Tighter line height */
+}
+
+.password-instructions {
+  margin: 3px 0; /* ✅ Reduced from 5px 0 */
+  line-height: 1.1; /* ✅ Tighter line height */
+}
+
+.password-instructions .instruction {
+  display: block;
+  margin: 1px 0; /* ✅ Reduced from 2px 0 */
+  color: #666;
+  font-size: 10px; /* ✅ Reduced from 12px */
+}
+
+.password-instructions .instruction.valid {
+  color: #28a745;
+}
+
+/* ✅ UPDATED: Input group for eye toggle */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input {
+  flex: 1;
+  padding-right: 40px; /* ✅ Reduced from 45px */
+}
+
+/* ✅ OPTIMIZED: Smaller eye toggle */
+.container {
+  --color: #6c757d;
+  --size: 16px; /* ✅ Reduced from 18px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 10px; /* ✅ Reduced from 12px */
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+  width: 22px; /* ✅ Reduced from 24px */
+  height: 22px;
+  border-radius: 3px; /* ✅ Reduced from 4px */
+  transition: all 0.2s ease;
+}
+
+.container:hover {
+  --color: #2e8b77;
+  background-color: rgba(46, 139, 119, 0.1);
+}
+
+.container .eye {
+  position: absolute;
+  animation: keyframes-fill .5s;
+}
+
+.container .eye-slash {
+  position: absolute;
+  animation: keyframes-fill .5s;
+  display: none;
+}
+
+/* On check event */
+.container input:checked ~ .eye {
+  display: none;
+}
+
+.container input:checked ~ .eye-slash {
+  display: block;
+}
+
+/* Hide the default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ✅ Eye toggle animation */
+@keyframes keyframes-fill {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+input.ng-valid.ng-touched {
+  border-color: #28a745;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 6px; /* ✅ Reduced from 10px */
+  border-radius: 3px; /* ✅ Reduced from 4px */
+  margin: 5px 0; /* ✅ Reduced from 10px 0 */
+  border: 1px solid #f5c6cb;
+  text-align: center;
+  font-weight: 500;
+  font-size: 10px; /* ✅ Smaller font */
+}
+
+.error-field {
+  border-color: #dc3545 !important;
+  background-color: #fff5f5;
+}
+
+/* ✅ ENHANCED: Better mobile responsiveness */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 0.5rem;
+  }
+  
+  .auth-box {
+    padding: 1.5rem;
+    max-width: 100%;
+    margin: 0;
+    max-height: 98vh; /* ✅ More space on mobile */
+  }
+  
+  .auth-box h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-box form {
+    gap: 0.6rem;
+  }
+  
+  .auth-box input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .container {
+    --size: 14px;
+    width: 20px;
+    height: 20px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 0.3rem;
+  }
+  
+  .auth-box {
+    padding: 1.2rem;
+    max-height: 99vh;
+  }
+  
+  .auth-box h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .auth-box form {
+    gap: 0.5rem;
+  }
+  
+  .auth-box input {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.85rem;
+  }
+  
+  .error {
+    font-size: 9px;
+    margin: 1px 0 2px 0;
+  }
+  
+  .instruction {
+    font-size: 9px;
+    margin-bottom: 1px;
+  }
+  
+  .password-instructions .instruction {
+    font-size: 9px;
+    margin: 0.5px 0;
+  }
+}
+
+/* ✅ NEW: Ultra-compact mode for very small screens */
+@media (max-width: 360px) {
+  .auth-box {
+    padding: 1rem;
+  }
+  
+  .auth-box h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .auth-box form {
+    gap: 0.4rem;
+  }
+  
+  .error {
+    font-size: 8px;
+    margin: 0.5px 0 1px 0;
+  }
+  
+  .instruction {
+    font-size: 8px;
+    margin-bottom: 0.5px;
+  }
+}
+
+/* ✅ NEW: Landscape mode optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+  .auth-container {
+    padding: 0.3rem;
+  }
+  
+  .auth-box {
+    max-height: 95vh;
+    padding: 1.2rem;
+  }
+  
+  .auth-box h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .auth-box form {
+    gap: 0.4rem;
+  }
+  
+  .error {
+    font-size: 9px;
+    margin: 0.5px 0 1px 0;
+  }
+  
+  .instruction {
+    font-size: 9px;
+    margin-bottom: 1px;
+  }
+}

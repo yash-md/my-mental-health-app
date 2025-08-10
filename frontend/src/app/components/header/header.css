@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px; 
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; 
+}
+
+.pill-radio-container {
+  --main-color: #2e8b77;
+  --secondary-color: #4a9d8e;
+  --text-color: #2e3b3f;
+  --pill-bg: #f0f7f6;
+  --count: 5;
+  
+  display: flex;
+  position: relative;
+  background: var(--pill-bg);
+  border-radius: 1.5rem; 
+  padding: 0.2rem 0.4rem; 
+  gap: 0.3rem; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06) inset;
+  width: fit-content;
+  height: 40px; 
+}
+
+.pill-radio-container input {
+  display: none;
+}
+
+.pill-radio-container label {
+  position: relative;
+  padding: 0.3rem 0.8rem; 
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem; 
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 32px; 
+}
+
+.pill-radio-container input:checked + label {
+  background: linear-gradient(to right, var(--main-color), var(--secondary-color));
+}
+
+.pill-radio-container input:checked + label a {
+  color: #ffffff;
+}
+
+.pill-radio-container label:hover a {
+  color: var(--main-color);
+}
+
+.pill-radio-container label a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* ✅ Reduced gap */
+  transition: color 0.3s ease;
+}
+
+/* Profile picture styling */
+.profile-pic {
+  width: 16px; /* ✅ Reduced from 18px */
+  height: 16px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ✅ OPTIMIZED: Dropdown styling - More compact */
+.pill-radio-container .dropdown {
+  position: relative;
+}
+
+.pill-radio-container .dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px); /* ✅ Reduced gap */
+  left: 0;
+  background-color: white;
+  min-width: 160px; /* ✅ Reduced min-width */
+  z-index: 999;
+  list-style: none;
+  padding: 0.4rem 0; /* ✅ Reduced padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-8px); /* ✅ Reduced transform */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.pill-radio-container .dropdown-content.show {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: all !important;
+}
+
+.pill-radio-container .dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.pill-radio-container .dropdown::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px; /* ✅ Reduced height */
+  background: transparent;
+  z-index: 998;
+}
+
+.pill-radio-container .dropdown-content li {
+  padding: 0;
+}
+
+.pill-radio-container .dropdown-content li a {
+  display: block !important;
+  padding: 8px 12px; /* ✅ Reduced padding */
+  color: #333 !important;
+  text-decoration: none;
+  font-size: 0.8rem; /* ✅ Reduced font size */
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  margin: 0 6px; /* ✅ Reduced margin */
+}
+
+.pill-radio-container .dropdown-content li a:hover {
+  background-color: #f0f7f6;
+  color: var(--main-color) !important;
+  transform: translateX(3px); /* ✅ Reduced transform */
+}
+
+/* ✅ OPTIMIZED: Pill Indicator - Smaller */
+.pill-indicator {
+  position: absolute;
+  bottom: 3px; /* ✅ Reduced from 4px */
+  left: 0.4rem;
+  height: 2px; /* ✅ Reduced from 3px */
+  width: calc((100% - 0.8rem) / var(--count));
+  background: linear-gradient(to right, var(--main-color), var(--secondary-color));
+  border-radius: 1px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+/* ✅ FIXED: Proper sliding positions with reduced gap compensation */
+#pill-home:checked ~ .pill-indicator {
+  transform: translateX(0%);
+}
+
+#pill-services:checked ~ .pill-indicator {
+  transform: translateX(calc(100% + 0.3rem));
+}
+
+#pill-about:checked ~ .pill-indicator {
+  transform: translateX(calc(200% + 0.6rem));
+}
+
+#pill-contact:checked ~ .pill-indicator {
+  transform: translateX(calc(300% + 0.9rem));
+}
+
+#pill-profile:checked ~ .pill-indicator {
+  transform: translateX(calc(400% + 1.2rem));
+}
+
+/* Responsive Design - Optimized for smaller sizes */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  .pill-radio-container {
+    padding: 0.15rem 0.25rem;
+    gap: 0.15rem;
+    border-radius: 1.2rem;
+    height: 36px;
+  }
+  
+  .pill-radio-container label {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    height: 28px;
+  }
+  
+  .profile-pic {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .pill-indicator {
+    height: 2px;
+    bottom: 2px;
+  }
+  
+  .pill-radio-container .dropdown-content {
+    min-width: 140px;
+    left: -15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .brand-container {
+    gap: 0.4rem;
+  }
+  
+  .brand-logo {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .pill-radio-container {
+    padding: 0.1rem 0.2rem;
+    gap: 0.1rem;
+    border-radius: 1rem;
+    height: 32px;
+  }
+  
+  .pill-radio-container label {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    height: 26px;
+  }
+}

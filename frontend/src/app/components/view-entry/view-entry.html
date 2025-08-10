@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="view-entry-container">
+  <div *ngIf="entry">
+    <h1>{{ entry.title }}</h1>
+    <p class="date">{{ entry.date | date: 'medium' }}</p>
+    <p>{{ stripHtmlTags(entry.content) }}</p>
+    <button (click)="goBack()">Back to History</button>
+  </div>
+</div>
